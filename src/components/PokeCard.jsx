@@ -82,6 +82,7 @@ export default function PokeCard(props) {
         // 2b. check if the selected pokemon is in the cache, otherwise fetch from the api
         if (selectedPokemon in cache) {
             setData(cache[selectedPokemon])
+            console.log('Found pokemon in cache')
             return
         }
 
@@ -96,10 +97,11 @@ export default function PokeCard(props) {
                 const res = await fetch(finalUrl)
                 const pokemonData = await res.json()
                 setData(pokemonData)
-                console.log('Fetched data')
+                console.log('Fetched pokemon data')
+
                 // save new pokemon information to cache so I can pull from cache next time I run it
                 cache[selectedPokemon] = pokemonData
-                localStorage.setItem('pokemon', JSON.stringify(cache)) // data is an object, so have to stringify it to save into JSON localStorage
+                localStorage.setItem('pokedex', JSON.stringify(cache)) // data is an object, so have to stringify it to save into JSON localStorage
             } catch (err) {
                 console.log(err.message)
                 return
