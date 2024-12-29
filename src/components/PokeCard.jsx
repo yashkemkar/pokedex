@@ -130,5 +130,4 @@ export default function PokeCard(props) {
             </div>
         </div>
     )
-    Hello
 }
