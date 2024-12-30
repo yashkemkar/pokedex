@@ -13,6 +13,18 @@ export default function PokeCard(props) {
     const [loadingSkill, setLoadingSkill] = useState(false)
     const { name, height, abilities, stats, types, moves, sprites } = data || {} // the or condition just stipulates if data type is null, destructure out of empty object.
 
+    console.log('this is moves:', moves)
+    const sortedMoves = moves || []
+    sortedMoves.sort((a,b)=>{
+        if(a.move.name < b.move.name) {
+            return -1
+        }
+        if(a.move.name > b.move.name) {
+            return 1
+        }
+        return 0
+    })
+
     // Need to get a filtered list of images for normal sprites, no other types of images.
     const imgList = Object.keys(sprites || {}).filter(val => {
         if (!sprites[val]) { return false }
@@ -184,7 +196,7 @@ export default function PokeCard(props) {
             <div className='pokemon-move-grid'>
                 {moves.map((moveObj, moveIndex) => {
                     return (
-                        <button className='button-card pomeon-move' key={moveIndex} onClick={() => {
+                        <button className='button-card pokemon-move' key={moveIndex} onClick={() => {
                             fetchMoveData(moveObj?.move?.name, moveObj?.move?.url)
                          }}>
                             <p>{capFirstLetter(moveObj?.move?.name.replaceAll('-', ' '))}</p>
