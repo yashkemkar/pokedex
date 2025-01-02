@@ -1,5 +1,5 @@
 import { first151Pokemon, getFullPokedexNumber } from "../utils"
-import { useState, useEffect, useRef} from "react"
+import { useState} from "react"
 // Create side navigation that has all the pokemon listed, along with a search functionality to quickly find a specific pokemon.
 export default function SideNav(props) {
 
@@ -7,15 +7,6 @@ export default function SideNav(props) {
 
     const [searchValue, setSearchValue] = useState('')
     
-    const inputRef = useRef(null)
-
-    useEffect(()=>{
-        if(inputRef.current){
-            inputRef.current.focus()
-            console.log('use Effect working')
-        }
-    },[])
-
     const filteredPokemon = first151Pokemon.filter((ele, eleIndex) => {
         // if full pokedex number includes the current search value, return true
         if (getFullPokedexNumber(eleIndex).includes(searchValue)) {

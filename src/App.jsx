@@ -1,17 +1,18 @@
 import Header from "./components/Header"
 import PokeCard from "./components/PokeCard"
 import SideNav from "./components/SideNav"
-import { useState } from "react"
+import { useState} from "react"
 
 function App() {
 
   const [selectedPokemon, setSelectedPokemon] = useState(0)
   const [showSideMenu, setShowSideMenu] = useState(false)
- 
+  
 
     // To provide side nav functionality in mobile
   function handleToggleMenu(){
     setShowSideMenu(!showSideMenu)
+ 
   }
 
   // To close side nav when pokemon selected in mobile
